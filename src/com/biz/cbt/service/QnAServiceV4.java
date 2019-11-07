@@ -5,14 +5,17 @@ import java.util.Scanner;
 import org.apache.ibatis.session.SqlSession;
 
 import com.biz.cbt.config.DBConnection;
+import com.biz.cbt.dao.AnswerDao;
 import com.biz.cbt.dao.QnADao;
+import com.biz.cbt.dao.QuestionsDao;
 
 // 문제은행의 시작메뉴의 method가 있는 클래스.
 // 문제를 CRUD하는 메뉴와 만들어진 문제를 푸는 메뉴가 있다
-public class QnAServiceV1 {
+public class QnAServiceV4 {
 
-	protected QnADao qnaDao;
-
+	protected QuestionsDao questionsDao;
+	protected QnADao answersDao;
+	protected AnswerDao answerDao;
 	Scanner scan = new Scanner(System.in);
 
 	// 문제입력을 선택한 후
@@ -27,17 +30,19 @@ public class QnAServiceV1 {
 	// 문제풀이 메서드가 있는 클래스의 인스턴스를 만들었다.
 	QnAServiceV3 qNa3 = new QnAServiceV3();
 
+	/*
 	public QnAServiceV1() {
 
 		SqlSession sqlSession = DBConnection.
 				getSqlSessionFactory().
 				openSession(true);
 
-		// this.questionsDao = sqlSession.getMapper(QuestionsDao.class);
-		this.qnaDao = sqlSession.getMapper(QnADao.class);
-	    // this.answerDao = sqlSession.getMapper(AnswerDao.class);
+		this.questionsDao = sqlSession.getMapper(QuestionsDao.class);
+		this.answersDao = sqlSession.getMapper(AnswersDao.class);
+	    this.answerDao = sqlSession.getMapper(AnswerDao.class);
 
 	}
+	*/
 
 	public void viewStartMenu() { // 맨 처음 시작메뉴
 
@@ -54,7 +59,6 @@ public class QnAServiceV1 {
 				qNa3.questionsSolution(); // 2. 문제풀이 메서드로
 			} else if (strMenu == 3) { // 종료
 				System.out.println(" 선택을 종료합니다. ");
-				break;
 			} else {
 				System.out.println("숫자만 입력하세요.");
 			}

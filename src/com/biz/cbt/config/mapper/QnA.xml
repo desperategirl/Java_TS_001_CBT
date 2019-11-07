@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.cbt.dao.QnADao">
+
+	<!-- mapper.xml에 설정하는 DTO -->
+    <insert id="insert" parameterType="QADTO">
+    
+    INSERT INTO tbl_cbt_test(
+    	CB_NUM,
+		CB_QUE,
+		CB_A1,
+		CB_A2,
+		CB_A3,
+		CB_A4,
+		CB_ANS
+    ) VALUES 
+    (
+	    #{cb_num},
+	    #{cb_que},
+		#{cb_a1},
+		#{cb_a2},
+		#{cb_a3},
+		#{cb_a4},
+		#{cb_ans}
+    )
+    
+    </insert>
+	
+	
+	<select id="findByNum" resultType="QADTO">
+		SELECT * FROM tbl_cbt_test
+		WHERE CB_NUM = #{strQuestionsCode}
+		
+	
+	</select>
+	
+	<update id="update" parameterType="QADTO">
+	
+	UPDATE tbl_cbt_test
+	SET 
+		CB_NUM = '#{cb_num}',
+		CB_QUE = '#{cb_que}',
+		CB_A1 = '#{cb_a1}',
+		CB_A2 = '#{cb_a2}',
+		CB_A3 = '#{cb_a3}',
+		CB_A4 = '#{cb_a4}',
+		CB_ANS = '#{cb_ans}'
+		
+	WHERE CB_NUM = #{cb_num}	
+	
+	</update>
+	
+	<delete id="delete" parameterType="QADTO">
+	
+	DELETE FROM tbl_cbt_test
+	WHERE CB_NUM = #{strQuestionsCode}
+	
+	</delete>
+
+</mapper>
